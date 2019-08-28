@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-
-  List<String> drawerItems = [
+  final List<String> drawerItems = [
     "Explore",
     "Explore",
     "Explore",
@@ -29,12 +28,12 @@ class Home extends StatelessWidget {
             children: <Widget>[
               Expanded(
                   child: Container(
-                    color: Colors.blueGrey,
-                  )),
+                color: Colors.blueGrey,
+              )),
               Expanded(
                   child: Container(
-                    color: Colors.white,
-                  )),
+                color: Colors.white,
+              )),
             ],
           ),
           ListView.builder(
@@ -47,7 +46,7 @@ class Home extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     buildInfoRow(),
-                    buildPostRow(),
+                    buildPost(image: i % 2 == 0),
                     buildLikeRow(),
                   ],
                 ),
@@ -57,10 +56,19 @@ class Home extends StatelessWidget {
           Container(
             height: 70,
             child: AppBar(
-              title: Text("Explore", style: TextStyle(color: Colors.black),),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Exp", style: TextStyle(color: Colors.white),),
+                  Text(
+                    "lore",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
               backgroundColor: Colors.transparent,
               elevation: 0,
-              iconTheme: IconThemeData(color: Colors.black),
+//              iconTheme: IconThemeData(color: Colors.black),
               actionsIconTheme: IconThemeData(color: Colors.black),
               centerTitle: true,
               actions: <Widget>[
@@ -131,7 +139,8 @@ class Home extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
           child: CircleAvatar(
             radius: 20,
-            backgroundColor: Colors.red,
+            child: Icon(Icons.person),
+            backgroundColor: Colors.blueGrey,
           ),
         ),
         Spacer(),
@@ -139,20 +148,35 @@ class Home extends StatelessWidget {
         Spacer(),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Icon(Icons.more_vert, color: Colors.grey,),
+          child: Icon(
+            Icons.more_vert,
+            color: Colors.grey,
+          ),
         ),
       ],
     );
   }
 
-  Widget buildPostRow() {
+  Widget buildPost({bool image = false}) {
     return Container(
-      padding: EdgeInsets.all(8),
-      height: 200,
-      width: 200,
-      child: Text(
-          "Your Post goes here and will be public to all users in no time."),
+//      height: 200,
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Text(
+                "Your Post goes here and will be public to all users in no time."),
+          ),
+          image ? buildPostImage() : Container(),
+        ],
+      ),
+//      child: image ? buildPostImage() : buildPostText(),
     );
+  }
+
+  Widget buildPostImage() {
+    return Image.asset('assets/images/img.jpg');
   }
 
   Widget buildLikeRow() {
@@ -163,7 +187,10 @@ class Home extends StatelessWidget {
         children: <Widget>[
           Row(
             children: <Widget>[
-              Icon(Icons.favorite, color: Colors.grey,),
+              Icon(
+                Icons.favorite,
+                color: Colors.grey,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("28"),
@@ -172,11 +199,16 @@ class Home extends StatelessWidget {
           ),
           Container(
             height: 30,
-            child: VerticalDivider(color: Colors.blueGrey,),
+            child: VerticalDivider(
+              color: Colors.blueGrey,
+            ),
           ),
           Row(
             children: <Widget>[
-              Icon(Icons.mode_comment, color: Colors.grey,),
+              Icon(
+                Icons.mode_comment,
+                color: Colors.grey,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("28"),
@@ -185,9 +217,14 @@ class Home extends StatelessWidget {
           ),
           Container(
             height: 30,
-            child: VerticalDivider(color: Colors.blueGrey,),
+            child: VerticalDivider(
+              color: Colors.blueGrey,
+            ),
           ),
-          Icon(Icons.share, color: Colors.grey,),
+          Icon(
+            Icons.share,
+            color: Colors.grey,
+          ),
         ],
       ),
     );
