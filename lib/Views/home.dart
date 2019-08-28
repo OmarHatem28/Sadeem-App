@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 class Home extends StatelessWidget {
   final List<String> drawerItems = [
     "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
-    "Explore",
+    "Home Work",
+    "Audio Library",
+    "E-Learning",
+    "Exam",
+    "Alert",
+    "Attendance",
+    "Scores",
+    "Library",
+    "Time Table",
+    "Send A Complaint",
+    "About",
+    "Suggestion",
+    "Share App",
   ];
 
   @override
