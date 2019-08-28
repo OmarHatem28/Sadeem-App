@@ -40,52 +40,66 @@ class Home extends StatelessWidget {
             padding: EdgeInsets.only(top: 40, bottom: 20),
             itemCount: 10,
             itemBuilder: (context, i) {
-              return Card(
-                elevation: 20,
-                margin: EdgeInsets.all(40),
-                child: Column(
-                  children: <Widget>[
-                    buildInfoRow(),
-                    buildPost(image: i % 2 == 0),
-                    buildLikeRow(),
-                  ],
-                ),
+              return Stack(
+                children: <Widget>[
+                  Card(
+                    elevation: 20,
+                    margin: EdgeInsets.all(40),
+                    child: Column(
+                      children: <Widget>[
+                        buildInfoRow(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: buildPost(context, image: i % 2 == 0),
+                        ),
+                        buildLikeRow(),
+                      ],
+                    ),
+                  ),
+                ],
               );
             },
           ),
-          Container(
-            height: 70,
-            child: AppBar(
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Exp", style: TextStyle(color: Colors.white),),
-                  Text(
-                    "lore",
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-//              iconTheme: IconThemeData(color: Colors.black),
-              actionsIconTheme: IconThemeData(color: Colors.black),
-              centerTitle: true,
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.search),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Icon(Icons.notifications),
-                ),
-              ],
-            ),
-          ),
+          buildAppBar(),
         ],
       ),
       drawer: buildDrawer(),
+    );
+  }
+
+  Widget buildAppBar() {
+    return Container(
+      height: 70,
+      child: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              "Exp",
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              "lore",
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+//              iconTheme: IconThemeData(color: Colors.black),
+        actionsIconTheme: IconThemeData(color: Colors.black),
+        centerTitle: true,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.search),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Icon(Icons.notifications),
+          ),
+        ],
+      ),
     );
   }
 
@@ -157,26 +171,35 @@ class Home extends StatelessWidget {
     );
   }
 
-  Widget buildPost({bool image = false}) {
+  Widget buildPost(BuildContext context, {bool image = false}) {
     return Container(
-//      height: 200,
-      width: double.infinity,
+//      height: 250,
       child: Column(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.all(8),
             child: Text(
-                "Your Post goes here and will be public to all users in no time."),
+                "Your Post goes here and will be public to all users in no time.Your Post goes here and will be public to all users in no time.Your Post goes here and will be public to all users in no time.Your Post goes here and will be public to all users in no time."),
           ),
-          image ? buildPostImage() : Container(),
+          image ? buildPostImage(context) : Container(),
         ],
       ),
 //      child: image ? buildPostImage() : buildPostText(),
     );
   }
 
-  Widget buildPostImage() {
-    return Image.asset('assets/images/img.jpg');
+  Widget buildPostImage(BuildContext context) {
+    return Container(
+        height: 200,
+        child: new OverflowBox(
+          minWidth: 0.0,
+          minHeight: 0.0,
+          maxWidth: MediaQuery.of(context).size.width - 20,
+          child: Image.asset(
+            'assets/images/img.jpg',
+            fit: BoxFit.cover,
+          ),
+        ));
   }
 
   Widget buildLikeRow() {
