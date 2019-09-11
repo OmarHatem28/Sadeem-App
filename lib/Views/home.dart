@@ -111,7 +111,7 @@ class Home extends StatelessWidget {
             children: <Widget>[
               UserAccountsDrawerHeader(
                 decoration: BoxDecoration(
-                  color: Colors.blue,
+                  color: Colors.blueGrey,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(45),
                       bottomRight: Radius.circular(45)),
@@ -131,7 +131,7 @@ class Home extends StatelessWidget {
                       width: 20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(15)),
-                        color: Colors.blue,
+                        color: Colors.blueGrey,
                       ),
                     ),
                     title: Text(item),
